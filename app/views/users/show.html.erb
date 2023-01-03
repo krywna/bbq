@@ -1,0 +1,12 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @user %>
+
+<div class="text-center">
+  <h1><%= @user.name %></h1>
+
+  <p class="buffer-top">
+  <%= link_to "EDIT PROFILE", edit_user_path(@user),
+    class: 'btn btn-default' %>
+  </p>
+</div>
