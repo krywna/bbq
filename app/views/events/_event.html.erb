@@ -11,9 +11,9 @@
           <div class="buffer-both mx-3"><%= event.address %></div>
         </div>
 
-        <div class="user-avatar">
+        <div class="user-avatar mx-3 my-3">
           <% event.visitors.each do |user| %>
-            <%= image_tag "https://w7.pngwing.com/pngs/862/646/png-transparent-beard-hipster-male-man-avatars-xmas-giveaway-icon-thumbnail.png", class: "img-icon", title: user.name %>
+            <%= image_tag user_avatar(user), class: "img-icon", title: user.name %>
           <% end %>
         </div>
       </div>

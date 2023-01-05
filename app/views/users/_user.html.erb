@@ -1,6 +1,6 @@
 <span class="user">
   <span class="user-avatar">
-    <%= image_tag("https://w7.pngwing.com/pngs/862/646/png-transparent-beard-hipster-male-man-avatars-xmas-giveaway-icon-thumbnail.png", class: "img-icon border border-3") %>
+    <%= image_tag user_avatar(user), class: "img-icon border border-3" %>
   </span>
   <span class="user-name">
     <% if request.path == user_path(user) %>

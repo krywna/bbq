@@ -1,7 +1,11 @@
 module ApplicationHelper
 
   def user_avatar(user)
-    asset_path("https://vibirai.ru/image/964472.jpg")
+    if user.avatar?
+     user.avatar.url
+    else
+      asset_path("https://vibirai.ru/image/964472.jpg")
+    end
   end
 
   def flash_class(level)

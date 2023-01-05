@@ -2,8 +2,8 @@
   <%= render partial: "partials/form_errors", locals: { model: @user } %>
 
   <div class="form-group">
-    <i class="icon-user mx-1"></i>
-    <%= f.label :Имя %>
+    <i class="icon-user mx-2"></i>
+    <%= f.label t("activerecord.attributes.user.name") %>
     <%= f.text_field :name, class: "form-control" %>
   </div>
 
@@ -13,8 +13,16 @@
     <%= f.text_field :email, class: "form-control mt-2" %>
   </div>
 
-  <div class="actions mt-3">
+  <div class="actions mt-2">
     <%= f.submit t("views.buttons.save"), data: { turbo: false }, class: "btn btn-primary" %>
     <%= t("views.buttons.or") %> <%= link_to t("views.buttons.back"), :back %>
   </div>
+
+  <div class="form-group mt-2">
+    <i class="icon-picture mx-1"></i>
+    <%= f.label t("activerecord.attributes.user.avatar") %>
+    <p><%= image_tag(@user.avatar.thumb.url) if @user.avatar? %></p>
+    <%= f.file_field :avatar, class: "form-control mt-2" %>
+  </div>
+
 <% end %>

@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
 
+  mount_uploader :avatar, AvatarUploader
+
   validates :name, length: {maximum: 35}
 
   before_validation :set_name, on: :create
