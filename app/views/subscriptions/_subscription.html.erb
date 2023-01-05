@@ -1,2 +1,29 @@
-<div id="<%= dom_id subscription %>">
-</div>
+<span class="subscription">
+  <div class="row my-2" data-controller="subscription">
+    <div class="col-7">
+      <% if subscription.user.present? %>
+        <%= render partial: "users/user", object: subscription.user %>
+      <% else %>
+        <em class="mx-3"><%= subscription.user_name %></em>
+      <% end %>
+    </div>
+
+    <div class="col-1">
+      <% if current_user_can_edit?(subscription) %>
+        <%= button_to "",
+          event_subscription_path(subscription.event, subscription),
+          method: :delete,
+          class: "btn btn-danger icon-remove-sign mt-2",
+          form: {
+            data: {
+              turbo: false,
+              controller: "confirmation",
+              action: 'submit->confirmation#confirm',
+              confirmation_message_value: t("confirmation.messages.subscription"),
+            }
+          }
+        %>
+      <% end %>
+    </div>
+  </div>
+</span>

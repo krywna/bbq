@@ -1,15 +1,80 @@
-<p style="color: green"><%= notice %></p>
+<div class="event">
+  <div class="event-info row">
+    <div class="col-md-12">
+      <%= content_tag "div", "", class: "event-background",
+        style: 'background-image: url("https://i.gifer.com/6ob.gif")' %>
 
-<%= render @event %>
+      <div class="event-info-inner row py-5 px-5">
+        <div class="col-md-6">
+          <div class="event-description">
+            <h1><%= @event.title %></h1>
+            <h3><%= l @event.datetime, format: :long %></h3>
+            <p><%= @event.description %></p>
+          </div>
 
-<div>
-  <% if current_user_can_edit?(@event) %>
-  <div class="buffer-both">
-    <%= link_to 'Edit', edit_event_path(@event),
-      class: 'btn btn-primary' %>
-   </div>
-  <% end %>
-  <%= link_to "Back to events", events_path %>
+          <% if current_user_can_edit?(@event) %>
+            <div class="buffer-both">
+              <%= link_to t("views.buttons.edit"), edit_event_path(@event),
+                class: "btn btn-primary" %>
+            </div>
 
-  <%= button_to "Destroy this event", @event, method: :delete %>
+            <div class="buffer-both">
+              <%= button_to t("views.buttons.delete"), event_path(@event), method: :delete, data: { turbo_confirm: t("confirmation.messages.event") }, class: "btn btn-danger" %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="col-md-6">
+          <div id="map" class="text-dark"
+            data-address= '<%= @event.address %>'
+            style="width: 100%; height: 400px;">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-7 mx-1">
+      <div class="event-comments buffer-top">
+        <%= render partial: 'comments/form',
+          locals: { comment: @new_comment || @event.comments.build } %>
+
+        <div class="buffer-both">
+          <%= render partial: 'comments/comment',
+            collection: @event.comments.except(@new_comment) %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class=" mx-3 mt-3 py-3 px-3">
+        <div class="event-owner">
+          <h4 class="mt-3"><%= t("views.event.calling") %></h4>
+            <p><%= render partial: 'users/user', object: @event.user %></p>
+        </div>
+
+        <% unless @event.subscriptions.count == 0 %>
+          <div class="event-subscriptions">
+            <h4><%= t("views.event.will_go") %></h4>
+            <div>
+              <p>
+              <%= render partial: "subscriptions/subscription",
+                collection: @event.subscriptions.except(@new_subscription) %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+        <% unless current_user_can_edit?(@event) %>
+          <div class="event-subscription-form">
+            <h4><%= t("views.event.i_will_go") %></h4>
+            <div>
+              <%= render partial: "subscriptions/form", locals: { subscription: @new_subscription || @event.subscriptions.build } %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

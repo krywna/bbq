@@ -8,7 +8,6 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.min.css">
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=<%= ENV["YANDEX_MAP_KEY"] %>&lang=ru_RU" type="text/javascript" ></script>
     <%= javascript_include_tag "application" %>
   </head>
 
@@ -16,28 +15,47 @@
     <nav class="navbar navbar-expand navbar-light bg-light mb-5">
       <div class="container">
         <div class="collapse navbar-collapse">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item mx-1">
-              <%= link_to "Events", root_path, class: "navbar-brand btn btn-light fw-bolder" %>
+              <%= link_to t("views.nav-bar.events"), root_path, class: "navbar-brand btn btn-light fw-bolder" %>
             </li>
             <% if user_signed_in? %>
               <li class="nav-item mx-1">
-                <%= link_to "Profile", current_user, class: "nav-link btn btn-light fw-bolder", data: {turbo: false} %>
+                <%= link_to t("views.nav-bar.create"), new_event_path, class: "nav-link btn btn-primary fw-bolder", data: {turbo: false} %>
               </li>
               <li class="nav-item mx-1">
-                <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link btn btn-ligh fw-bolder", data: {turbo: false} %>
+                <%= link_to t("views.nav-bar.user"), current_user, class: "nav-link btn btn-light fw-bolder", data: {turbo: false} %>
+              </li>
+              <li class="nav-item mx-1">
+                <%= button_to t("views.nav-bar.logout"), destroy_user_session_path, method: :delete, class: "nav-link btn btn-ligh fw-bolder", data: {turbo: false} %>
               </li>
             <% else %>
               <li class="nav-item mx-1">
-                <%= link_to "Login", new_user_session_path, class: "nav-link btn btn-light fw-bolder", data: {turbo: false} %>
+                <%= link_to t("views.nav-bar.login"), new_user_session_path, class: "nav-link btn btn-ligh fw-bolder", data: {turbo: false} %>
               </li>
               <li class="nav-item mx-1">
-                <%= link_to "Registration", new_user_registration_path, class: "nav-link btn btn-light fw-bolder", data: {turbo: false} %>
+                <%= link_to t("views.nav-bar.reg"), new_user_registration_path, class: "nav-link btn btn-light fw-bolder", data: {turbo: false} %>
               </li>
             <% end %>
           </ul>
         </div>
       </div>
     </nav>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <% flash.each do |key, value| %>
+          <div class="<%= flash_class(key) %> col-6 row" role="alert">
+            <div class="col-10 fw-bold">
+              <%= value %>
+            </div>
+
+            <div class="col-2">
+              <button type="button" class="btn-close mx-5" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <%= yield %>
+    </div>
   </body>
 </html>

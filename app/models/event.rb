@@ -5,4 +5,8 @@ class Event < ApplicationRecord
   has_many :subscribers, through: :subscriptions, source: :user, dependent: :destroy
 
   validates :title, length: {maximum: 280}
+
+  def visitors
+    (subscribers + [user]).uniq
+  end
 end

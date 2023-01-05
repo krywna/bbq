@@ -1,2 +1,31 @@
-<div id="<%= dom_id comment %>">
+<div class="buffer-bottom row bg-light justify-content-center rounded-5">
+  <p class="col-11 mt-3 border border-success border-top-0 border-end-0 border-start-0"><%= comment.body %></p>
+  <p class="col-10">
+    <span>
+      <% if comment.user.present? %>
+        <%= render partial: 'users/user', object: comment.user %>
+      <% else %>
+        <em><strong><%= comment.user_name %></strong></em>
+      <% end %>
+    </span>
+    <em><%= l comment.created_at, format: :short %></em>
+  </p>
+
+  <div class="col-1">
+    <% if current_user_can_edit?(comment) %>
+      <%= button_to "",
+        event_comment_path(comment.event, comment),
+        method: :delete,
+        class: "btn btn-danger icon-trash",
+        form: {
+          data: {
+            turbo: false,
+            controller: "confirmation",
+            action: 'submit->confirmation#confirm',
+            confirmation_message_value: t("confirmation.messages.comment"),
+          }
+        }
+      %>
+    <% end %>
+  </div>
 </div>

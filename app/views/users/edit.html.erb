@@ -1,10 +1,15 @@
-<h1>Editing user</h1>
+<div class="row justify-content-center">
+  <div class="col-lg-6 col-md-8 px-5 py-3">
+    <h2><%= t("views.user.edit") %></h2>
 
-<%= render "form", user: @user %>
+    <div class="row">
+      <div class="col-lg-7 col-md-10 buffer-top">
+        <%= render 'form' %>
 
-<br>
-
-<div>
-  <%= link_to "Show this user", @user %> |
-  <%= link_to "Back to users", users_path %>
+        <p class="buffer-top">
+          <%= link_to t("views.user.change_password"), edit_user_registration_path %>
+        </p>
+      </div>
+    </div>
+  </div>
 </div>

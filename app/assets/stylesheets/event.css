@@ -1,0 +1,38 @@
+.event-info {
+  position: relative;
+  color: black;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.event-background {
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+
+  background-size: cover;
+  background-position: center;
+
+}
+
+.event-description {
+  color: black;
+}
+
+.event-description a {
+  color: black;
+  text-decoration: none;
+}
+
+.event-description small {
+  color: black;
+}
+
+.event-map {
+  margin: 20px 0;
+  width: 100%;
+  height: 400px;
+}

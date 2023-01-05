@@ -1,0 +1,127 @@
+ru:
+  activerecord:
+    models:
+      user: "Пользователь"
+      event: "Событие"
+      photo: "Фотография"
+
+    errors:
+      models:
+        subscription:
+          attributes:
+            user_email:
+              self_subscription: "Это ваше событие"
+
+
+    attributes:
+      user:
+        email: "Электронная почта"
+        name: "Имя"
+        avatar: "Фото"
+        password: "Пароль"
+        password_confirmation: "Повторите пароль"
+      event:
+        title: "Название"
+        address: "Место"
+        datetime: "Дата"
+        description: "Описание"
+      photo:
+        photo: "Фотография"
+
+  controllers:
+    events:
+      created: "Вы создали новое мероприятие"
+      updated: "Вы обновили мероприятие"
+      destroyed: "Вы удалили мероприятие"
+    users:
+      updated: "Профиль изменен"
+    comments:
+      destroyed: "Комментарий удален"
+      created: "Комментарий добавлен"
+      error: "Ошибка комментария"
+    subscriptions:
+      created: "Вы подписаны на это событие"
+      destroyed: "Участник исключен из мероприятия"
+      error: "Ошибка подписки"
+    photos:
+      error: "Ошибка с фото"
+      created: "Вы добавили фотографию к событию"
+      destroyed: "Вы удалили фото"
+
+  errors:
+    messages:
+      not_saved:
+        one: "Одна ошибка:"
+        few: "%{count} ошибки:"
+        many: "%{count} ошибок:"
+        other: "%{count} ошибка:"
+
+  confirmation:
+    messages:
+      event: "Вы точно хотите удалить событие?"
+      user: "Вы точно хотите удалить этот аккаунт?"
+      comment: "Вы уверены, что хотите удалить этот комментарий?"
+      subscription: "Вы уверены, что хотите удалить эту подписку?"
+      photo: "Вы уверены, что хотите удалить это фото?"
+
+  views:
+    buttons:
+      send: "Отправить"
+      save: "Сохранить"
+      create: "Создать"
+      back: "Вернуться"
+      delete: "Удалить"
+      edit: "Изменить"
+      upload: "Загрузить"
+      reg: "Зарегистрироваться"
+      or: "или"
+    event:
+      edit: "Редактировать событие"
+      create: "Создать событие"
+      pincode: "Доступ только по пин-коду"
+      calling: "Зовёт:"
+      will_go: "Пойдут:"
+      i_will_go: "Я пойду:"
+      photos: "Скоро тут будут кадры мероприятия"
+    nav-bar:
+      user: "Профиль"
+      logout: "Выйти"
+      login: "Войти"
+      reg: "Зарегистрироваться"
+      create: "Создать событие"
+      events: "Все события"
+    photo:
+      added: "Добавил"
+    subscription:
+      create: "Подписаться"
+    user:
+      edit: "Редактирование пользователя"
+      change_password: "Сменить пароль"
+      organized: "Организовал"
+      didnt_organize: "Этот пользователь ещё не организовывал события!"
+      forgot_password: "Забыли пароль?"
+      new: "Регистрация"
+    comment:
+      text: "Текст комментария"
+      user_name: "Ваше имя"
+
+  devise:
+    passwords:
+      edit:
+        new: "Новый пароль"
+        change_password: "Сменить пароль"
+        confirmation: "Подтвердите новый пароль"
+        min: "символов, не меньше"
+    registrations:
+      edit:
+        password: "Пароль"
+        pass_info: "оставьте поле пустым, если не хотите менять"
+        pass_confirmation: "Подтверждение пароля"
+        current_pass: "Текущий пароль"
+        pass_cur_info: "он нужен для подтверждения"
+        delete_user: "Удалить мой аккаунт"
+        dont_like: "Не понравилось?"
+    sessions:
+      new:
+        remember_me: "Запомнить меня"
+

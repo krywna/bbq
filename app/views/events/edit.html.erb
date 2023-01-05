@@ -1,10 +1,11 @@
-<h1>Editing event</h1>
+<div class="row justify-content-center">
+  <div class="col-8 buffer-bottom row px-5">
+    <h1 class="text-center"><%= t("views.event.edit") %></h1>
 
-<%= render "form", event: @event %>
-
-<br>
-
-<div>
-  <%= link_to "Show this event", @event %> |
-  <%= link_to "Back to events", events_path %>
+    <div class="row justify-content-center">
+      <div class="col-md-6 buffer-top">
+        <%= render "form" %>
+      </div>
+    </div>
+  </div>
 </div>
