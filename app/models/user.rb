@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :events
 
+  has_many :comments, dependent: :destroy
+
 private
 
   def set_name
