@@ -22,17 +22,17 @@
             </li>
             <% if user_signed_in? %>
               <li class="nav-item mx-1">
-                <%= link_to "Profile", current_user, class: "nav-link btn btn-light fw-bolder" %>
+                <%= link_to "Profile", current_user, class: "nav-link btn btn-light fw-bolder", data: {turbo: false} %>
               </li>
               <li class="nav-item mx-1">
-                <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link btn btn-ligh fw-bolder" %>
+                <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link btn btn-ligh fw-bolder", data: {turbo: false} %>
               </li>
             <% else %>
               <li class="nav-item mx-1">
-                <%= link_to "Login", new_user_session_path, class: "nav-link btn btn-light fw-bolder" %>
+                <%= link_to "Login", new_user_session_path, class: "nav-link btn btn-light fw-bolder", data: {turbo: false} %>
               </li>
               <li class="nav-item mx-1">
-                <%= link_to "Registration", new_user_registration_path, class: "nav-link btn btn-light fw-bolder" %>
+                <%= link_to "Registration", new_user_registration_path, class: "nav-link btn btn-light fw-bolder", data: {turbo: false} %>
               </li>
             <% end %>
           </ul>

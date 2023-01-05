@@ -2,31 +2,28 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:destroy]
   before_action :set_event, only: [:create, :destroy]
 
-  # POST /comments or /comments.json
   def create
     @new_comment = @event.comments.build(comment_params)
     @new_comment.user = current_user
 
-    respond_to do |format|
       if @new_comment.save
-        format.html { redirect_to @event, notice: "Comment was successfully created." }
-        format.json { render :show, status: :created, location: @comment }
+        redirect_to @event, notice: I18n.t("controllers.comments.created")
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+       render "events/show", alert: I18n.t("controllers.comments.error")
       end
     end
   end
 
-  # DELETE /comments/1 or /comments/1.json
   def destroy
-    @comment.destroy
+    message = {notice: I18n.t("controllers.comments.destroyed")}
 
-    respond_to do |format|
-      if current_user_can_edit?(@comment)
-        format.html { redirect_to redirect_to @event, notice: "Comment was successfully destroyed." }
-        format.json { head :no_content }
+    if current_user_can_edit?(@comment)
+      @comment.destroy!
+    else
+      message = {alert: I18n.t("controllers.comments.error")}
     end
+
+    redirect_to @event, message
   end
 
   private
