@@ -3,10 +3,24 @@
 <%= render @user %>
 
 <div class="text-center">
+  <%= image_tag user_avatar(@user) %>
   <h1><%= @user.name %></h1>
 
   <p class="buffer-top">
   <%= link_to "EDIT PROFILE", edit_user_path(@user),
     class: 'btn btn-default' %>
   </p>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <% if @user.events.any? %>
+      <h3>Head of:</h3>
+      <div class="row">
+        <%= render partial: 'events/event', collection: @user.events %>
+      </div>
+    <% else %>
+      <p class="buffer-top">Пользователь пока не организовал ни одного события</p>
+    <% end %>
+  </div>
 </div>

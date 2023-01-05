@@ -1,15 +1,43 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bbq</title>
+    <title>BBQ</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.min.css">
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=<%= ENV["YANDEX_MAP_KEY"] %>&lang=ru_RU" type="text/javascript" ></script>
+    <%= javascript_include_tag "application" %>
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-expand navbar-light bg-light mb-5">
+      <div class="container">
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
+            <li class="nav-item mx-1">
+              <%= link_to "Events", root_path, class: "navbar-brand btn btn-light fw-bolder" %>
+            </li>
+            <% if user_signed_in? %>
+              <li class="nav-item mx-1">
+                <%= link_to "Profile", current_user, class: "nav-link btn btn-light fw-bolder" %>
+              </li>
+              <li class="nav-item mx-1">
+                <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link btn btn-ligh fw-bolder" %>
+              </li>
+            <% else %>
+              <li class="nav-item mx-1">
+                <%= link_to "Login", new_user_session_path, class: "nav-link btn btn-light fw-bolder" %>
+              </li>
+              <li class="nav-item mx-1">
+                <%= link_to "Registration", new_user_registration_path, class: "nav-link btn btn-light fw-bolder" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </body>
 </html>
