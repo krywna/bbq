@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     user_signed_in? && event.user == current_user
   end
 
-  def current_user_can_subscribe?(event)
-    (user_signed_in? && event.user != current_user) || !user_signed_in?
+  def user_can_subscribe?(event)
+    !user_signed_in? || event.user != current_user
   end
 end
