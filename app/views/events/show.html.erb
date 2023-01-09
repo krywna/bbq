@@ -80,7 +80,7 @@
             </div>
           </div>
         <% end %>
-        <% unless current_user_can_edit?(@event) %>
+        <% if current_user_can_subscribe?(@event) %>
           <div class="event-subscription-form">
             <h4><%= t("views.event.i_will_go") %></h4>
             <div>

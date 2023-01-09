@@ -2,12 +2,17 @@ class Subscription < ApplicationRecord
   belongs_to :event
   belongs_to :user, optional: true
 
-  validates :user_name, presence: true, unless: -> { user.present? }
-  validates :user_email, format: /\A[a-zA-Z0-9\-_.]+@[a-zA-Z0-9\-_.]+\z/, unless: -> { user.present? }
-  validates :user, uniqueness: {scope: :event_id}, if: -> { user.present? }
-  validate :user_email_self_subscription, if: -> { user.present? }
-  validates :user_email, presence: true, uniqueness: {scope: :event_id}, unless: -> { user.present? }
-  validate :user_email_busyness, unless: -> { user.present? }
+  with_options if: -> { user.present? } do
+    validates :user, uniqueness: {scope: :event_id}
+    validate :user_email_self_subscription
+  end
+
+  with_options unless: -> { user.present? } do
+    validates :user_name, presence: true
+    validates :user_email, presence: true, format: /\A[a-zA-Z0-9\-_.]+@[a-zA-Z0-9\-_.]+\z/
+    validates :user_email, uniqueness: {scope: :event_id}
+    validate :user_email_busyness
+  end
 
   def user_name
     if user.present?
@@ -25,7 +30,7 @@ class Subscription < ApplicationRecord
     end
   end
 
-private
+  private
 
   def user_email_self_subscription
     errors.add(:user_email, :self_subscription) if user == event.user
@@ -34,5 +39,4 @@ private
   def user_email_busyness
     errors.add(:user_email, :taken) if User.find_by(email: user_email).present?
   end
-
 end
