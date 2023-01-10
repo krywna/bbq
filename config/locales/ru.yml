@@ -106,6 +106,13 @@ ru:
       user_name: "Ваше имя"
 
   devise:
+    reset_password_instructions:
+      action: "Изменить пароль"
+      greeting: "Здравствуйте, %{recipient}!"
+      instruction: "Вы запросили изменение пароля. Для изменения пароля нажмите ссылку ниже:"
+      instruction_2: "Если вы не запрашивали изменение пароля - проигнорируйте это сообщение"
+      instruction_3: "Ваш пароль не изменится пока вы не перейдете по ссылке и не обновите данные."
+      subject: "Инструкции по восстановлению пароля"
     passwords:
       edit:
         new: "Новый пароль"
@@ -125,3 +132,16 @@ ru:
       new:
         remember_me: "Запомнить меня"
 
+  message_mailer:
+    new_comment:
+      subject: "В @%{title} добавили новый комментарий"
+      title: "Новый комментарий"
+      author: "Автор"
+      event: "Событие"
+      datetime: "Состоится"
+    new_photo:
+      subject: "В @%{title} добавили новое фото"
+      title: " добавил новое фото к событию "
+      author: "Автор"
+      event: "Событие"
+      datetime: "Состоится"

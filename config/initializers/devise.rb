@@ -1,6 +1,8 @@
 
 Devise.setup do |config|
 
+  config.mailer_sender = ENV["MAILJET_SENDER"]
+
   require 'devise/orm/active_record'
 
   config.case_insensitive_keys = [:email]

@@ -20,5 +20,6 @@ module Bbq
     config.load_defaults 7.0
     config.i18n.default_locale = :ru
     config.generators.system_tests = nil
+    config.action_mailer.delivery_method = :mailjet
   end
 end

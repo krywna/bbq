@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   )
   end
 
-  helper_method :current_user_can_edit?, :current_user_can_subscribe?
+  helper_method :current_user_can_edit?, :user_can_subscribe?
 
   def current_user_can_edit?(event)
     user_signed_in? && event.user == current_user

@@ -33,6 +33,8 @@ gem "rmagick"
 
 gem "dotenv-rails"
 
+gem "mailjet"
+
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 gem "bootsnap", require: false
