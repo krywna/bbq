@@ -2,20 +2,22 @@ ymaps.ready(init);
 
 function init(){
 
-  if ( document.getElementById("map") != null ) {
+  const mapDiv = document.getElementById("map")
 
-    address = document.getElementById("map").getAttribute("data-address");
+  if (!mapDiv) return
+
+    const address = document.getElementById("map").getAttribute("data-address");
 
     const myMap = new ymaps.Map("map", {
         center: [55.76, 37.64],
         zoom: 10
     });
 
-    myGeocoder = ymaps.geocode(address);
+    const myGeocoder = ymaps.geocode(address);
 
     myGeocoder.then(
       function (res) {
-        coordinates = res.geoObjects.get(0).geometry.getCoordinates();
+        const coordinates = res.geoObjects.get(0).geometry.getCoordinates();
 
         myMap.geoObjects.add(
             new ymaps.Placemark(
@@ -31,5 +33,4 @@ function init(){
         alert("Не можем найти такой адрес");
       }
     );
-  }
 }
