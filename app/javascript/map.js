@@ -1,12 +1,11 @@
 ymaps.ready(init);
 
-function init(){
-
+function init()
   const mapDiv = document.getElementById("map")
 
   if (!mapDiv) return
 
-    const address = document.getElementById("map").getAttribute("data-address");
+    const address = mapDiv.getAttribute("data-address");
 
     const myMap = new ymaps.Map("map", {
         center: [55.76, 37.64],
@@ -29,8 +28,8 @@ function init(){
 
         myMap.setCenter(coordinates);
         myMap.setZoom(15);
-      }, function (err) {
+      },
+      function (err) {
         alert("Не можем найти такой адрес");
       }
     );
-}
