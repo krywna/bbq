@@ -1,6 +1,6 @@
 ymaps.ready(init);
 
-function init()
+function init(){
   const mapDiv = document.getElementById("map")
 
   if (!mapDiv) return
@@ -28,8 +28,8 @@ function init()
 
         myMap.setCenter(coordinates);
         myMap.setZoom(15);
-      },
-      function (err) {
+      }, function (err) {
         alert("Не можем найти такой адрес");
       }
     );
+}
