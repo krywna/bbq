@@ -1,4 +1,44 @@
-<div class="event-photo buffer-both">
-  <%= link_to image_tag(photo.photo.thumb.url), photo.photo.url %>
-  Добавил <%= render partial: 'users/user', object: photo.user %>
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="true">
+  <div class="carousel-inner">
+    <% photos.each.with_index do |photo, i| %>
+    <%= content_tag :div, class:"carousel-item #{ i == 0 ? "active" : "" }" do %>
+    <%= image_tag(photo.photo.url, class:'d-block w-100', alt:'img') %>
+      <div class="row">
+        <div class="col-md-4 my-2">
+          <%= t("views.photo.added") %> <%= render partial: 'users/user', object: photo.user %>
+        </div>
+        <div class="col-md-1 offset-md-6 my-2">
+          <% if current_user_can_edit?(photo) %>
+            <%= button_to "",
+              event_photo_path(photo.event, photo),
+              method: :delete,
+              class: "btn btn-danger icon-trash px-3 py-2 mx-sm-5",
+              form: {
+                data: {
+                turbo: false,
+                controller: "confirmation",
+                action: 'submit->confirmation#confirm',
+                confirmation_message_value: t("confirmation.messages.photo"),
+                }
+              }
+            %>
+        <% end %>
+      </div>
+      </div>
+    <% end %>
+    <% end %>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  </button>
+</div>
+<div class="carousel-indicators row">
+  <% photos.each.with_index do |photo, i| %>
+    <button type="button"  data-bs-target="#carouselExampleCaptions" data-bs-slide-to=<%= i  %> aria-label="Slide <%= i + 1 %>">
+    <%= image_tag(photo.photo.thumb.url, alt:'img') %>
+  </button>
+  <% end %>
 </div>
