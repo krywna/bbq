@@ -45,6 +45,21 @@ group :development, :test do
 end
 
 group :development do
+  gem "capistrano", "~> 3.10"
+
+  gem "capistrano-rails", "~> 1.6"
+
+  gem "capistrano-passenger", "~> 0.2"
+
+  gem "capistrano-rbenv", "~> 2.2"
+
+  gem "capistrano-bundler", "~> 2.1"
+
+  gem "net-ssh", ">= 6.0.2"
+
+  gem "ed25519", ">= 1.2", "< 2.0"
+
+  gem "bcrypt_pbkdf", ">= 1.0", "< 2.0"
 
   gem "web-console"
 end
