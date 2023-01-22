@@ -1,0 +1,22 @@
+default: &default
+  adapter: sqlite3
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+development:
+  <<: *default
+  database: db/development.sqlite3
+
+test:
+  <<: *default
+  database: db/test.sqlite3
+
+production:
+  pool: 5
+  encoding: unicode
+  adapter: postgresql
+  host: localhost
+  port: 5432
+  database: bbq
+  user: username
+  password: <%= ENV["PASSWORD_DATABASE_USER"] %>
