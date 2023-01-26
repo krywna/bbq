@@ -4,7 +4,7 @@ class Comment < ApplicationRecord
 
   validates :body, presence: true, length: {maximum: 50}
   validates :event, presence: true
-  validates :user_name, presence: true, unless: -> { user.present? }, length: {maximum: 15}
+  validates :user_name, presence: true, length: {maximum: 15}, unless: -> { user.present? }
 
   def user_name
     if user.present?

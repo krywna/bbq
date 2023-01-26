@@ -8,8 +8,8 @@ class Subscription < ApplicationRecord
   end
 
   with_options unless: -> { user.present? } do
-    validates :user_name, presence: true
-    validates :user_email, presence: true, format: /\A[a-zA-Z0-9\-_.]+@[a-zA-Z0-9\-_.]+\z/
+    validates :user_name, presence: true, length: {maximum: 25}
+    validates :user_email, presence: true, format: /\A[a-zA-Z0-9\-_.]+@[a-zA-Z0-9\-_.]+\z/, length: {maximum: 40}
     validates :user_email, uniqueness: {scope: :event_id}
     validate :user_email_busyness
   end
